@@ -49,6 +49,7 @@ function menuItems(app, event, date) {
     {act: 'item.open', icon: 'edit', label: series ? '编辑整个系列' : '编辑'},
     !series && {act: 'item.defer', icon: 'defer', label: '延期或暂不安排', disabled: done, hint: done ? '先撤销完成' : ''},
     {act: 'item.focus', icon: 'focus', label: '开始专注'},
+    event.type === 'task' && {act: 'item.breakdown', icon: 'sparkle', label: 'AI 助手拆解（演示）'},
     event.type === 'task' && {act: 'item.subtask', icon: 'subtask', label: '添加子任务'},
     {sep: true},
     {act: 'item.delete', icon: 'trash', label: series ? '删除整个系列' : '删除', danger: true},
@@ -148,6 +149,7 @@ export function registerItemMenu(app) {
   });
   app.on('item.restore', el => app.commit(draft => restoreItem(draft, el.dataset.id), {message: '已恢复'}));
   app.on('trash.open', () => trashDialog(app));
+  app.on('item.breakdown', el => { app.overlays.closeAll(); app.getView('assistant').breakdown(app, el.dataset.id, el.dataset.date); });
   app.on('item.focus', el => { app.overlays.closeAll(); app.getView('focus').prepare(app, el.dataset.id); });
   app.on('item.subtask', el => { app.overlays.close('item-menu', {restoreFocus: false}); app.getView('editor').openTask(app, el.dataset.id, {focusSubtask: true}); });
   app.on('item.step', el => {

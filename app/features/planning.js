@@ -16,6 +16,7 @@ export function registerPlanning(app){
   return html`<section class="planning-pool panel panel-pad" aria-label="待规划池">
    <div class="section-title"><h2>${icon('tasks')}待规划池</h2><span class="count">${tasks.length}</span></div><div class="planning-history"><button type="button" class="btn btn-quiet btn-sm" data-act="planning.undo"${attr('disabled',!undo.length)}>${icon('undo')}撤销</button><button type="button" class="btn btn-quiet btn-sm" data-act="planning.redo"${attr('disabled',!redo.length)}>重做</button></div>
    <p class="hint">拖动任务把手放进日历；也可点击“排期”选择时间。预计耗时可调整。</p>
+   <form class="planning-goal row" data-submit="planning.goal"><label class="sr-only" for="planningGoal">要拆解的目标</label><input class="input" id="planningGoal" name="goal" maxlength="160" placeholder="输入目标，体验本地拆解示例" required data-uncontrolled><button class="btn btn-primary" type="submit">${icon('steps')}AI 拆解</button></form>
    <div class="planning-tasks">${tasks.slice(0,60).map(e=>html`<article class="planning-task" data-key="${'pool-'+e.id}"><button type="button" class="planning-handle icon-btn" data-plan-drag="${e.id}" data-act="planning.edit" data-id="${e.id}" aria-label="${'拖动或选择排期：'+e.title}">${icon('move')}</button><button type="button" class="planning-task-title" data-act="editor.openTask" data-id="${e.id}"><b>${e.title}</b><small>${e.parentId?parents.get(e.parentId)?.title||'上级任务':''}${e.estimatedMinutes?' · 预计 '+e.estimatedMinutes+' 分钟':''}${e.deadline?' · 截止 '+e.deadline:''}</small></button><button type="button" class="btn btn-quiet btn-sm" data-act="planning.edit" data-id="${e.id}" data-date="${date}">排期</button></article>`)}</div>
    ${tasks.length>60?html`<p class="hint">先显示 60 项，其余可在任务列表选择排期。</p>`:''}${!tasks.length?html`<p class="planning-empty">没有待排期的具体任务。可在任务列表添加待办。</p>`:''}
   </section>`;
@@ -48,6 +49,7 @@ export function registerPlanning(app){
   stage(t?{id:target.id,date:t.date,start:t.start,duration:t.minutes}:{id:target.id,remove:true},reverse?'undo':'redo',original);
  }
  app.view('planning',{renderPool,edit});
+ app.on('planning.goal',form=>{const text=new FormData(form).get('goal').trim();if(text)app.getView('assistant').decompose('',text);});
  app.on('planning.edit',el=>edit(el.dataset.id,el.dataset.date));
  app.on('planning.save',form=>{try{const f=new FormData(form);stage({id:form.dataset.id,date:f.get('date'),start:f.get('start'),duration:Number(f.get('duration'))});}catch(error){app.setUi('planning',{error:error.message});}});
  app.on('planning.remove',el=>stage({id:el.dataset.id,remove:true}));

@@ -77,7 +77,7 @@ function topbar(state, page, app) {
     ${app.getView('focus')?.pill?.(state) || ''}
     ${page.actions || ''}
     <button type="button" class="btn btn-primary capture-btn" data-act="capture.open" aria-label="新建事项" title="新建事项（N）">${icon('plus')}<span class="label">新建</span></button>
-    <button type="button" class="assistant-btn" data-act="assistant.toggle" aria-label="${assistantOpen ? '关闭演示说明' : '打开演示说明'}" aria-expanded="${assistantOpen ? 'true' : 'false'}" title="演示说明（Ctrl + K）">${companionAvatar(state, app)}</button>
+    <button type="button" class="assistant-btn" data-act="assistant.toggle" aria-label="${assistantOpen ? '收起 AI 助手' : '打开 AI 助手'}" aria-expanded="${assistantOpen ? 'true' : 'false'}" title="AI 助手（Ctrl + K）">${companionAvatar(state, app)}<span class="assistant-label">AI 助手</span></button>
   </div>
 </header>`;
 }

@@ -84,7 +84,7 @@ function taskForm(state, app, id, mode) {
       </section>
 
       ${existing ? html`<section class="editor-block">
-        <div class="block-head"><h3>${icon('subtask')}子任务</h3><small>${depth >= 4 ? '已达五层上限' : '各自完成，删除上级不会删除子任务'}</small></div>
+        <div class="block-head"><h3>${icon('subtask')}子任务</h3><small>${depth >= 4 ? '已达五层上限' : '各自完成，删除上级不会删除子任务'}</small>${depth < 4 ? html`<button type="button" class="btn btn-quiet btn-sm" data-act="assistant.decomposeItem" data-id="${existing.id}">AI 拆解 · 演示</button>` : ''}</div>
         ${children.length ? html`<ul class="items mini">${children.map(c => { const cd = isDone(state.doc.progress, c, state.today); return html`<li class="${cx('item', cd && 'is-done')}" data-key="${'c-' + c.id}"><button type="button" class="done-btn" data-act="item.complete" data-id="${c.id}" data-date="${state.today}" aria-pressed="${cd ? 'true' : 'false'}" aria-label="${(cd ? '撤销完成：' : '完成：') + c.title}"><i>${icon('check')}</i></button><button type="button" class="item-body" data-act="editor.openTask" data-id="${c.id}"><span class="item-title"><b>${c.title}</b></span></button></li>`; })}</ul>` : ''}
         ${depth < 4 ? html`<div class="inline-add"><input class="input" id="childTitle" maxlength="200" placeholder="添加子任务，回车保存" data-uncontrolled data-enter="editor.addChild" data-id="${existing.id}"${attr('autofocus', ui.focusSubtask)}><button type="button" class="btn btn-quiet btn-sm" data-act="editor.addChild" data-id="${existing.id}">添加</button></div>` : ''}
       </section>` : ''}

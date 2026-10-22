@@ -31,3 +31,17 @@ body { padding-top: var(--demo-banner-h); }
 .demo-mobile-link:hover { background: #fff; }
 .demo-mobile-link:focus-visible { outline: 2px solid #6c5ce7; outline-offset: 2px; }
 @media (max-width: 719px) { .demo-mobile-link { display: none; } }
+
+/* Restore the original assistant surfaces with an explicit, always visible entry label. */
+.assistant-btn { width: auto; min-width: 112px; padding: 0 10px 0 5px; display: inline-flex; align-items: center; gap: 4px; }
+.assistant-label { font-size: 13px; font-weight: 800; white-space: nowrap; }
+.app > .assistant-panel { top: var(--demo-banner-h); height: calc(100dvh - var(--demo-banner-h)); }
+.asst-pet .demo-sprout.sprout-md { width: 104px; height: 76px; }
+.asst-demo-label { font-size: 10px; font-weight: 700; color: var(--ink-3); padding-left: 4px; }
+.asst-title p { white-space: normal; line-height: 1.45; }
+@media (max-width: 719px) {
+  .assistant-btn { min-width: 76px; padding: 0 9px; }
+  .assistant-btn .demo-sprout { display: none; }
+  .assistant-label { font-size: 12px; }
+  .asst-box-tools .btn-sm { padding-inline: 8px; font-size: 12px; }
+}
