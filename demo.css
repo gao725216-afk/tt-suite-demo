@@ -45,3 +45,12 @@ body { padding-top: var(--demo-banner-h); }
   .assistant-label { font-size: 12px; }
   .asst-box-tools .btn-sm { padding-inline: 8px; font-size: 12px; }
 }
+
+/* Keep all three composer controls inside a narrow phone sheet. */
+@media (max-width: 719px) {
+  .assistant-panel.is-sheet, .assistant-sheet .asst-compose, .assistant-sheet .asst-box { min-width: 0; max-width: 100%; }
+  .assistant-sheet .asst-box-tools { display: grid; grid-template-columns: minmax(0, 1fr) auto 40px; min-width: 0; max-width: 100%; }
+  .assistant-sheet .asst-target { min-width: 0; width: 100%; overflow: hidden; }
+  .assistant-sheet .asst-target select { min-width: 0; width: 100%; max-width: 100%; }
+  .assistant-sheet .asst-send { width: 40px; min-width: 40px; }
+}
