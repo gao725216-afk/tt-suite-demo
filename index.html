@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN" data-build="public-demo-v1" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="theme-color" content="#fffbf5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1930" media="(prefers-color-scheme: dark)">
+<title>TT · 日程与成长 | 前端交互演示</title>
+<meta name="description" content="TT 日程与任务管理前端演示：今天、日历、任务、专注和成长花园。使用虚构演示数据，所有修改仅保存在当前浏览器，无账号或真实 AI 服务。">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'self'">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="./app.css">
+<link rel="icon" href="data:,">
+<script src="./core/organizer.js"></script><script src="./core/task-workspace.js"></script><script src="./core/occur.js"></script><script src="./core/task-views.js"></script><script src="./core/calendar-views.js"></script><script src="./core/task-planning.js"></script><script src="./core/focus.js"></script><script src="./core/garden-world.js"></script><script src="./core/period-tracker.js"></script>
+<script type="module" src="./app/main.js"></script>
+<link rel="stylesheet" href="./demo.css">
+</head>
+<body>
+<aside class="demo-banner" aria-label="前端演示说明"><div><strong>TT 前端演示</strong><span>虚构数据 · 仅当前浏览器保存 · 无真实 AI 服务</span></div><div class="demo-banner-actions"><a class="demo-mobile-link" href="./mobile-preview.html">查看手机版</a><button type="button" data-act="demo.about" aria-label="查看演示说明">演示说明</button></div></aside>
+<div id="boot" class="boot" role="status" aria-live="polite">
+  <div class="boot-card">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="48" height="48"><rect x="1" y="1" width="30" height="30" rx="9" fill="#6c5ce7"/><path d="M16 25v-8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M16 17c0-4.3-2.9-7-7.2-7 0 4.3 2.9 7 7.2 7Z" fill="#fff" opacity=".92"/><path d="M16 15c0-3.7 2.5-6.2 6.8-6.2 0 3.7-2.5 6.2-6.8 6.2Z" fill="#fff"/></svg></span>
+    <ol class="boot-steps">
+      <li data-step="identity">载入演示数据</li>
+      <li data-step="sync">读取本地修改</li>
+      <li data-step="prepare">准备页面</li>
+    </ol>
+    <p class="boot-error" role="alert"></p>
+    <button type="button" class="btn btn-quiet boot-retry" hidden>重新载入</button>
+  </div>
+</div>
+<div id="app" hidden aria-busy="true"></div>
+<noscript><p style="padding:24px">请启用 JavaScript 后使用 Auto Timetable。</p></noscript>
+</body>
+</html>

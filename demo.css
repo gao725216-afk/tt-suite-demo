@@ -1,0 +1,33 @@
+/* Public-demo framing. The original application layout remains intact. */
+:root { --demo-banner-h: 48px; }
+body { padding-top: var(--demo-banner-h); }
+.demo-banner { position: fixed; inset: 0 0 auto; z-index: 100; min-height: var(--demo-banner-h); display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 24px; color: #41336e; background: #eee8ff; border-bottom: 1px solid #d8cdf7; font-size: 12px; line-height: 1.4; }
+.demo-banner > div { display: flex; align-items: center; gap: 16px; }
+.demo-banner strong { white-space: nowrap; font-size: 13px; }
+.demo-banner button { white-space: nowrap; color: inherit; border: 1px solid #c5b3ed; background: #fff9; border-radius: 10px; padding: 5px 10px; font: inherit; cursor: pointer; }
+.demo-banner button:focus-visible { outline: 2px solid #6c5ce7; outline-offset: 2px; }
+#app, .app { min-height: calc(100dvh - var(--demo-banner-h)); }
+.rail { top: var(--demo-banner-h); height: calc(100dvh - var(--demo-banner-h)); }
+.topbar { top: var(--demo-banner-h); }
+.demo-sprout { display: inline-flex; align-items: center; justify-content: center; width: 120px; height: 120px; transform-origin: 50% 90%; }
+.demo-sprout svg { display: block; width: 100%; height: 100%; }
+.demo-sprout.sprout-sm { width: 42px; height: 42px; }
+.demo-sprout.sprout-md { width: 100px; height: 100px; }
+.demo-sprout.sprout-lg { width: 140px; height: 140px; }
+.demo-settings { max-width: 900px; }
+.demo-settings .actions { margin-top: 18px; }
+@media (max-width: 719px) {
+  :root { --demo-banner-h: 64px; }
+  .demo-banner { padding: 8px 12px; gap: 8px; }
+  .demo-banner > div { display: grid; gap: 2px; }
+  .demo-banner span { font-size: 10px; }
+  .demo-banner button { padding: 6px 8px; }
+  .demo-sprout.sprout-md { width: 80px; height: 80px; }
+}
+@media (prefers-reduced-motion: reduce) { .demo-sprout { animation: none; } }
+
+.demo-banner > .demo-banner-actions { display: flex; align-items: center; gap: 8px; }
+.demo-mobile-link { white-space: nowrap; color: #5942aa; border: 1px solid #c5b3ed; background: #fff9; border-radius: 10px; padding: 5px 10px; font: inherit; text-decoration: none; }
+.demo-mobile-link:hover { background: #fff; }
+.demo-mobile-link:focus-visible { outline: 2px solid #6c5ce7; outline-offset: 2px; }
+@media (max-width: 719px) { .demo-mobile-link { display: none; } }
